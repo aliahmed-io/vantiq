@@ -6,6 +6,8 @@ import Navbar from "@/components/Navbar";
 import LoadingScreen from "@/components/LoadingScreen";
 import HeroSection from "@/components/HeroSection";
 import AnatomySection from "@/components/AnatomySection";
+import SonicGallery from "@/components/SonicGallery";
+import BespokeAtelier from "@/components/BespokeAtelier";
 import PerformanceSection from "@/components/PerformanceSection";
 import FooterSection from "@/components/FooterSection";
 
@@ -49,10 +51,16 @@ export default function Home() {
       {/* SECTION 1: HERO & SCROLL SEQUENCE */}
       <HeroSection />
 
-      {/* SECTION 2: ANATOMY (3D) */}
+      {/* SECTION 2: THE VOICE (Audio Visualizer) */}
+      <SonicGallery />
+
+      {/* SECTION 3: ANATOMY (3D) */}
       <AnatomySection />
 
-      {/* SECTION 3: PERFORMANCE DATA */}
+      {/* SECTION 4: BESPOKE ATELIER (Materials) */}
+      <BespokeAtelier />
+
+      {/* SECTION 5: PERFORMANCE DATA */}
       <PerformanceSection />
 
       {/* SECTION 4: FOOTER */}

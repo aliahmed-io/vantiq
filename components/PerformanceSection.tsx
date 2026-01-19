@@ -61,7 +61,7 @@ export default function PerformanceSection() {
                     className="mb-16"
                 >
                     <h2 className="text-6xl md:text-8xl font-bold text-white mb-6">RAW DATA</h2>
-                    <div className="w-full h-[1px] bg-white/10" />
+                    <div className="w-full h-px bg-white/10" />
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-auto md:h-[800px]">

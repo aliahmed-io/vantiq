@@ -21,11 +21,11 @@ export default function StoryOverlay({ scrollYProgress }: { scrollYProgress: any
     const aeroY = useTransform(scrollYProgress, [0.65, 0.7], [50, 0]);
 
     // 85-100% FINAL
-    const finalOpacity = useTransform(scrollYProgress, [0.85, 0.9, 1], [0, 1, 1]);
-    const finalScale = useTransform(scrollYProgress, [0.85, 1], [0.9, 1]);
+    const finalOpacity = useTransform(scrollYProgress, [0.85, 0.9, 0.95, 0.99], [0, 1, 1, 0]);
+    const finalScale = useTransform(scrollYProgress, [0.85, 0.95], [0.9, 1]);
 
     return (
-        <div className="pointer-events-none fixed inset-0 z-30 flex flex-col items-center justify-center p-6 w-full h-full">
+        <div className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center p-6 w-full h-full">
 
             {/* 0-15% HERO INTRO */}
             <motion.div

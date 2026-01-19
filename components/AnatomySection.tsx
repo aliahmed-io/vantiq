@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, Suspense } from "react";
+import { useRef, useState, useEffect, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, Stage, PresentationControls, Html, Environment, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
@@ -8,25 +8,46 @@ import { motion } from "framer-motion";
 
 function Model({ isXRay }: { isXRay: boolean }) {
     const { scene } = useGLTF("/red+sports+car+3d+model.glb");
+    const [originalMaterials, setOriginalMaterials] = useState<Map<string, THREE.Material | THREE.Material[]>>(new Map());
 
-    // X-Ray Material Logic
-    useFrame(() => {
+    // Initialize: Cache original materials on first load
+    useEffect(() => {
+        const mats = new Map();
         scene.traverse((child) => {
             if ((child as THREE.Mesh).isMesh) {
                 const mesh = child as THREE.Mesh;
+                mats.set(mesh.uuid, mesh.material);
+            }
+        });
+        setOriginalMaterials(mats);
+    }, [scene]);
+
+    // Material switching logic
+    useEffect(() => {
+        scene.traverse((child) => {
+            if ((child as THREE.Mesh).isMesh) {
+                const mesh = child as THREE.Mesh;
+
                 if (isXRay) {
+                    // Apply X-Ray
                     mesh.material = new THREE.MeshPhysicalMaterial({
                         color: "white",
                         wireframe: true,
                         transparent: true,
                         opacity: 0.1,
-                        emissive: "#C4001A",
+                        emissive: "#C4001A", // VANTIQ Red
                         emissiveIntensity: 0.2
                     });
+                } else {
+                    // Revert to Original
+                    const original = originalMaterials.get(mesh.uuid);
+                    if (original) {
+                        mesh.material = original;
+                    }
                 }
             }
         });
-    });
+    }, [isXRay, originalMaterials, scene]);
 
     return <primitive object={scene} />;
 }
