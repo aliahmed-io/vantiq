@@ -1,26 +1,51 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-orbitron: var(--font-orbitron);
+  --font-rajdhani: var(--font-rajdhani);
+
+  /* VANTIQ Luxury Palette */
+  --color-vant-black: #050505;
+  --color-vant-dark: #0A0A0C;
+  --color-vant-accent: #C4001A;
+  /* Deep Performance Red */
+  --color-vant-highlight: #FF3A3A;
+  /* Electric Highlight */
+  --color-vant-white: #FFFFFF;
+  --color-vant-glass: rgba(5, 5, 5, 0.75);
+
+  /* Gradients */
+  --image-radial-glow: radial-gradient(circle at center, #120505 0%, #050505 100%);
+  --image-accent-gradient: linear-gradient(135deg, #C4001A 0%, #FF3A3A 100%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Global Styles */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-vant-black);
+  color: var(--color-vant-white);
+  font-family: var(--font-rajdhani), sans-serif;
+  /* Fallback to Rajdhani/Inter */
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-orbitron), sans-serif;
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: var(--color-vant-accent);
+  color: white;
+}
+
+/* Utility for smooth scroll if not using Lenis later, but good to have */
+html {
+  scroll-behavior: smooth;
 }
