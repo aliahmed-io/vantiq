@@ -187,20 +187,30 @@ export default function SonicGallery() {
                         IGNITION
                     </button>
                 ) : (
-                    <motion.div
-                        className="w-64 h-2 bg-gray-800 rounded-full overflow-hidden relative group cursor-crosshair mx-auto"
-                        onMouseMove={handleMouseMove}
-                        onMouseLeave={() => { setRpm(0); updateEngineParams(0); }}
-                        data-cursor="hover"
-                    >
+                    <div className="flex flex-col items-center gap-6">
                         <motion.div
-                            className="h-full bg-vant-accent"
-                            style={{ width: `${rpm * 100}%` }}
-                        />
-                        <div className="absolute top-4 left-0 w-full text-xs text-gray-500 font-mono text-center mt-2">
-                            DRAG TO REV // {(rpm * 9000).toFixed(0)} RPM
-                        </div>
-                    </motion.div>
+                            className="w-64 h-2 bg-gray-800 rounded-full overflow-hidden relative group cursor-crosshair mx-auto"
+                            onMouseMove={handleMouseMove}
+                            onMouseLeave={() => { setRpm(0); updateEngineParams(0); }}
+                            data-cursor="hover"
+                        >
+                            <motion.div
+                                className="h-full bg-vant-accent"
+                                style={{ width: `${rpm * 100}%` }}
+                            />
+                            <div className="absolute top-4 left-0 w-full text-xs text-gray-500 font-mono text-center mt-2">
+                                DRAG TO REV // {(rpm * 9000).toFixed(0)} RPM
+                            </div>
+                        </motion.div>
+
+                        <button
+                            onClick={stopEngine}
+                            className="text-xs text-red-500 font-mono tracking-widest hover:text-red-400 border border-red-900/30 px-4 py-2 rounded uppercase"
+                            data-cursor="hover"
+                        >
+                            [ Kill Switch ]
+                        </button>
+                    </div>
                 )}
 
                 <p className="text-gray-500 text-sm tracking-widest mt-4">
